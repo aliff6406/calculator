@@ -3,18 +3,14 @@ let num2;
 let operator;
 let displayValue = 0;
 
-const zeroBtn = document.getElementById('two-btn');
-const oneBtn = document.getElementById('one-btn');
-const twoBtn = document.getElementById('two-btn');
-const threeBtn = document.getElementById('three-btn');
-const fourBtn = document.getElementById('four-btn');
-const fiveBtn = document.getElementById('five-btn');
-const sixBtn = document.getElementById('six-btn');
-const sevenBtn = document.getElementById('seven-btn');
-const eightBtn = document.getElementById('eight-btn');
-const nineBtn = document.getElementById('nine-btn');
+const numberBtns = Array.from(document.querySelectorAll('[data-number]'));
+const display = document.getElementById('display');
 
-zeroBtn.onclick = () => 
+numberBtns.forEach((number) => {
+    number.addEventListener('click', (e) => {
+        concatenateDisplayValue(number.textContent);
+    });
+});
 
 function add(num1, num2) {
     return num1 + num2;
@@ -51,8 +47,9 @@ function operate(operator, num1, num2) {
 
 function concatenateDisplayValue(num) {
     if(displayValue === 0) {
-        displayValue = num;
+        displayValue = parseInt(num);
     } else {
         displayValue = parseInt(displayValue + '' + num);
     }
+    display.textContent = displayValue;
 }

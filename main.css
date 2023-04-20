@@ -1,0 +1,38 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+#calculator {
+    outline: 1px solid black;
+    width: 350px;
+    height: 500px;
+    padding: 20px;
+    flex-direction: column;
+}
+
+#display {
+    box-sizing: border-box; 
+    flex: 1 0 auto;
+    outline: 1px solid blue;
+}
+
+#buttons-grid {
+    flex: 3 0 auto;
+    flex-direction: column;
+}
+
+.btn-row {
+    flex: 1 0 auto;
+}
+
+.btn {
+    flex: 1 0 25%;
+}
+
+#equal-btn {
+    flex: 2 0 50%;
+}

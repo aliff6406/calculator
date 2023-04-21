@@ -19,7 +19,6 @@ body {
     flex-direction: row-reverse;
     box-sizing: border-box; 
     flex: 1 0 auto;
-    outline: 1px solid blue;
 }
 
 #buttons-grid {

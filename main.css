@@ -15,8 +15,7 @@ body {
 }
 
 #display {
-    display: flex;
-    flex-direction: row-reverse;
+    direction: rtl;
     box-sizing: border-box; 
     flex: 1 0 auto;
 }

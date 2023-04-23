@@ -8,7 +8,8 @@ const numberBtnArr = Array.from(document.querySelectorAll('[data-number]'));
 const operatorBtnArr = Array.from(document.querySelectorAll('[data-operator]'));
 const clearBtn = document.getElementById('clear-btn');
 const deleteBtn = document.getElementById('delete-btn');
-const display = document.getElementById('display');
+const currentDisplay = document.getElementById('current-operation');
+const previousDisplay = document.getElementById('last-operation');
 
 clearBtn.onclick = clearCalculator;
 
@@ -21,23 +22,32 @@ numberBtnArr.forEach((number) => {
 operatorBtnArr.forEach((operatorBtn) => {
     console.log(operator)
     operatorBtn.addEventListener('click', () => {
+        dataOperator = operatorBtn.getAttribute('data-operator');
         if(operatorClicked === false) {
             num1 = displayValue;
         } else {
             num2 = displayValue;
         }
         displayValue = 0;
-        dataOperator = operatorBtn.getAttribute('data-operator');
-        
+
         if(dataOperator !== '=') {
             operator = dataOperator;
         } else {
             displayValue = operate(operator);
             console.log(displayValue);
+            updateCurrentDisplay();
         }
         operatorClicked = !operatorClicked;
     });
 });
+
+function updateCurrentDisplay() {
+    currentDisplay.textContent = displayValue;
+};
+
+function updatePreviousDisplay() {
+    previousDisplay.textContent = displayValue
+};
 
 function concatDisplayValue(num) {
     if(displayValue === 0) {
@@ -45,43 +55,25 @@ function concatDisplayValue(num) {
     } else {
         displayValue = BigInt(displayValue + '' + num);
     }
-    updateDisplay();
+    updateCurrentDisplay();
 };
 
 function clearCalculator() {
     displayValue = 0;
-    updateDisplay();
-};
-
-function updateDisplay() {
-    display.textContent = displayValue;
-}
-
-function add() {
-    return num1 + num2;
-};
-
-function subtract() {
-    return num1 - num2;
-};
-
-function multiply() {
-    return num1 * num2;
-};
-
-function divide() {
-    return num1 / num2;
+    num1 = 0;
+    num2 = 0;
+    updateCurrentDisplay();
 };
 
 function operate(operator) {
     switch(operator) {
         case "+":
-            return add();
+            return num1 + num2;
         case "-":
-            return subtract();
+            return num1 - num2;
         case "*":
-            return multiply();
+            return num1 * num2;
         case "/":
-            return divide();
+            return num1 / num2;
     }
 };

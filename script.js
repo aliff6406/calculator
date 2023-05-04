@@ -30,10 +30,8 @@ operatorBtnArr.forEach((operatorBtn) => {
             num2 = displayValue;
         }
         displayValue = 0;
-
-        if(dataOperator !== '=') {
-            operator = dataOperator;
-        } else {
+        if(dataOperator != "=") operator = dataOperator;
+        if(operator === '=' || operatorClicked === true){
             displayValue = operate(operator);
             console.log(displayValue);
             updateCurrentDisplay();

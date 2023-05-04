@@ -12,6 +12,7 @@ const currentDisplay = document.getElementById('current-operation');
 const previousDisplay = document.getElementById('last-operation');
 
 clearBtn.onclick = clearCalculator;
+deleteBtn.onclick = deleteNumber;
 
 numberBtnArr.forEach((number) => {
     number.addEventListener('click', () => {
@@ -41,6 +42,19 @@ operatorBtnArr.forEach((operatorBtn) => {
     });
 });
 
+function operate(operator) {
+    switch(operator) {
+        case "+":
+            return num1 + num2;
+        case "-":
+            return num1 - num2;
+        case "*":
+            return num1 * num2;
+        case "/":
+            return num1 / num2;
+    }
+};
+
 function updateCurrentDisplay() {
     currentDisplay.textContent = displayValue;
 };
@@ -65,15 +79,12 @@ function clearCalculator() {
     updateCurrentDisplay();
 };
 
-function operate(operator) {
-    switch(operator) {
-        case "+":
-            return num1 + num2;
-        case "-":
-            return num1 - num2;
-        case "*":
-            return num1 * num2;
-        case "/":
-            return num1 / num2;
+function deleteNumber() {
+    str = displayValue.toString();
+    if(str.length === 1) {
+        displayValue = 0;
+    } else {
+        displayValue = str.slice(0,-1);
     }
+    updateCurrentDisplay();
 };

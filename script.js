@@ -50,6 +50,8 @@ function operate(operator) {
             return num1 * num2;
         case "/":
             return num1 / num2;
+        case "%":
+            return num1 % num2;
     }
 };
 
@@ -63,9 +65,9 @@ function updatePreviousDisplay() {
 
 function concatDisplayValue(num) {
     if(displayValue === 0) {
-        displayValue = BigInt(num);
+        displayValue = Number(num);
     } else {
-        displayValue = BigInt(displayValue + '' + num);
+        displayValue = Number(displayValue + '' + num);
     }
     updateCurrentDisplay();
 };

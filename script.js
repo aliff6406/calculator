@@ -22,12 +22,11 @@ numberBtnArr.forEach((number) =>
 
 operatorBtnArr.forEach((button) => 
     button.addEventListener('click', () => {
-        setOperator(button.getAttribute('data-operator'));
-        console.log('operand 1: ' + firstOperand);
-        console.log('operand 2: ' + secondOperand);
+        setOperator(button.textContent)
+        console.log(typeof button.textContent);
     })
 );
-
+// setOperator(button.getAttribute('data-operator'))
 equalBtn.addEventListener('click', () => evaluate());
 
 function appendPeriod() {
@@ -87,12 +86,11 @@ function operate(a, b, operator) {
             return a + b;
         case "-":
             return a - b;
-        case "*":
+        case "×":
             return a * b;
         case "%":
             return a % b;
-        case "/":
-            // console.log('test');
+        case "÷":
             if (b === 0) return 'Error';
             return a / b;
     }

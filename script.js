@@ -19,7 +19,11 @@ numberBtnArr.forEach((number) =>
 );
 
 operatorBtnArr.forEach((button) => 
-    button.addEventListener('click', () => setOperator(button.getAttribute('data-operator')))
+    button.addEventListener('click', () => {
+        setOperator(button.getAttribute('data-operator'));
+        console.log('operand 1: ' + firstOperand);
+        console.log('operand 2: ' + secondOperand);
+    })
 );
 
 equalBtn.addEventListener('click', () => evaluate());
@@ -33,7 +37,7 @@ function setOperator(operation) {
 };
 
 function concatDisplayValue(number) {
-    if (currentDisplay.textContent === '0' || shouldResetDisplay) resetDisplay();
+    if (currentDisplay.textContent === '0' || shouldResetDisplay || currentDisplay.textContent === 'Error') resetDisplay();
     currentDisplay.textContent += number;
 };
 
@@ -79,7 +83,8 @@ function operate(a, b, operator) {
         case "%":
             return a % b;
         case "/":
-            if (secondOperand === 0) return console.log('cannot divide by 0');
+            // console.log('test');
+            if (b === 0) return 'Error';
             return a / b;
     }
 };

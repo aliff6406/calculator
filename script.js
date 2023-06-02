@@ -10,9 +10,11 @@ const clearBtn = document.getElementById('clear-btn');
 const deleteBtn = document.getElementById('delete-btn');
 const currentDisplay = document.getElementById('current-operation');
 const previousDisplay = document.getElementById('last-operation');
+const periodBtn = document.getElementById('period-btn');
 
 clearBtn.onclick = clearCalculator;
 deleteBtn.onclick = deleteNumber;
+periodBtn.onclick = appendPeriod;
 
 numberBtnArr.forEach((number) =>
     number.addEventListener('click', () => concatDisplayValue(number.textContent))
@@ -27,6 +29,11 @@ operatorBtnArr.forEach((button) =>
 );
 
 equalBtn.addEventListener('click', () => evaluate());
+
+function appendPeriod() {
+    if (currentDisplay.textContent.includes('.')) return;
+    currentDisplay.textContent += ".";  
+};
 
 function setOperator(operation) {
     if (operator != null) evaluate();

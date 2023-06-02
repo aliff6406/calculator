@@ -1,11 +1,11 @@
-let num1;
-let num2;
-let operator;
-let displayValue = 0;
-let operatorClicked = false;
+let firstOperand;
+let secondOperand;
+let operator = null;
+let shouldResetDisplay = false;
 
 const numberBtnArr = Array.from(document.querySelectorAll('[data-number]'));
 const operatorBtnArr = Array.from(document.querySelectorAll('[data-operator]'));
+const equalBtn = document.getElementById('equal-btn');
 const clearBtn = document.getElementById('clear-btn');
 const deleteBtn = document.getElementById('delete-btn');
 const currentDisplay = document.getElementById('current-operation');
@@ -14,77 +14,72 @@ const previousDisplay = document.getElementById('last-operation');
 clearBtn.onclick = clearCalculator;
 deleteBtn.onclick = deleteNumber;
 
-numberBtnArr.forEach((number) => {
-    number.addEventListener('click', () => {
-        concatDisplayValue(number.textContent);
-    });
-});
+numberBtnArr.forEach((number) =>
+    number.addEventListener('click', () => concatDisplayValue(number.textContent))
+);
 
-operatorBtnArr.forEach((operatorBtn) => {
-    console.log(operator)
-    operatorBtn.addEventListener('click', () => {
-        dataOperator = operatorBtn.getAttribute('data-operator');
-        if(operatorClicked === false) {
-            num1 = displayValue;
-        } else {
-            num2 = displayValue;
-        }
-        displayValue = 0;
-        if(dataOperator != "=") operator = dataOperator;
-        if(operator === '=' || operatorClicked === true){
-            displayValue = operate(operator);
-            console.log(displayValue);
-            updateCurrentDisplay();
-        }
-        operatorClicked = !operatorClicked;
-    });
-});
+operatorBtnArr.forEach((button) => 
+    button.addEventListener('click', () => setOperator(button.getAttribute('data-operator')))
+);
 
-function operate(operator) {
-    switch(operator) {
-        case "+":
-            return num1 + num2;
-        case "-":
-            return num1 - num2;
-        case "*":
-            return num1 * num2;
-        case "/":
-            return num1 / num2;
-        case "%":
-            return num1 % num2;
-    }
+equalBtn.addEventListener('click', () => evaluate());
+
+function setOperator(operation) {
+    if (operator != null) evaluate();
+    firstOperand = currentDisplay.textContent;
+    operator = operation;
+    shouldResetDisplay = true;
+
 };
 
-function updateCurrentDisplay() {
-    currentDisplay.textContent = displayValue;
+function concatDisplayValue(number) {
+    if (currentDisplay.textContent === '0' || shouldResetDisplay) resetDisplay();
+    currentDisplay.textContent += number;
 };
 
-function updatePreviousDisplay() {
-    previousDisplay.textContent = displayValue
+function evaluate() {
+    if (operator === null || shouldResetDisplay) return;
+    secondOperand = currentDisplay.textContent;
+    currentDisplay.textContent = operate(firstOperand, secondOperand, operator);
+    operator = null;
 };
 
-function concatDisplayValue(num) {
-    if(displayValue === 0) {
-        displayValue = Number(num);
-    } else {
-        displayValue = Number(displayValue + '' + num);
-    }
-    updateCurrentDisplay();
-};
+
+function resetDisplay() {
+    currentDisplay.textContent = '';
+    shouldResetDisplay = false;
+}
+
 
 function clearCalculator() {
-    displayValue = 0;
+    currentDisplay.textContent = '0';
     num1 = 0;
     num2 = 0;
-    updateCurrentDisplay();
+    operator = null;
 };
 
 function deleteNumber() {
-    str = displayValue.toString();
-    if(str.length === 1) {
-        displayValue = 0;
-    } else {
-        displayValue = str.slice(0,-1);
+    if (currentDisplay.textContent.length === 1) {
+        currentDisplay.textContent = '0';
+        return;
     }
-    updateCurrentDisplay();
+    currentDisplay.textContent = currentDisplay.textContent.toString().slice(0,-1);
+};
+
+function operate(a, b, operator) {
+    a = Number(a);
+    b = Number(b);
+    switch(operator) {
+        case "+":
+            return a + b;
+        case "-":
+            return a - b;
+        case "*":
+            return a * b;
+        case "%":
+            return a % b;
+        case "/":
+            if (secondOperand === 0) return console.log('cannot divide by 0');
+            return a / b;
+    }
 };

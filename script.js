@@ -39,8 +39,8 @@ function setOperator(operation) {
     if (operator != null) evaluate();
     firstOperand = currentDisplay.textContent;
     operator = operation;
+    previousDisplay.textContent = `${firstOperand} ${operator}`;
     shouldResetDisplay = true;
-
 };
 
 function concatDisplayValue(number) {
@@ -52,6 +52,7 @@ function evaluate() {
     if (operator === null || shouldResetDisplay) return;
     secondOperand = currentDisplay.textContent;
     currentDisplay.textContent = operate(firstOperand, secondOperand, operator);
+    previousDisplay.textContent = `${firstOperand} ${operator} ${secondOperand} `
     operator = null;
 };
 
@@ -64,6 +65,7 @@ function resetDisplay() {
 
 function clearCalculator() {
     currentDisplay.textContent = '0';
+    previousDisplay.textContent = '';
     num1 = 0;
     num2 = 0;
     operator = null;

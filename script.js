@@ -2,6 +2,7 @@ let firstOperand;
 let secondOperand;
 let operator = null;
 let shouldResetDisplay = false;
+let positive = true;
 
 const numberBtnArr = Array.from(document.querySelectorAll('[data-number]'));
 const operatorBtnArr = Array.from(document.querySelectorAll('[data-operator]'));
@@ -11,10 +12,12 @@ const deleteBtn = document.getElementById('delete-btn');
 const currentDisplay = document.getElementById('current-operation');
 const previousDisplay = document.getElementById('last-operation');
 const periodBtn = document.getElementById('period-btn');
+const signBtn = document.getElementById('sign-btn');
 
 clearBtn.onclick = clearCalculator;
 deleteBtn.onclick = deleteNumber;
 periodBtn.onclick = appendPeriod;
+signBtn.onclick = setSign;
 
 numberBtnArr.forEach((number) =>
     number.addEventListener('click', () => concatDisplayValue(number.textContent))
@@ -26,7 +29,7 @@ operatorBtnArr.forEach((button) =>
         console.log(typeof button.textContent);
     })
 );
-// setOperator(button.getAttribute('data-operator'))
+
 equalBtn.addEventListener('click', () => evaluate());
 
 function appendPeriod() {
@@ -43,7 +46,7 @@ function setOperator(operation) {
 };
 
 function concatDisplayValue(number) {
-    if (currentDisplay.textContent === '0' || shouldResetDisplay || currentDisplay.textContent === 'Error') resetDisplay();
+    if (currentDisplay.textContent.slice(1) === '0' || currentDisplay.textContent === '0' || shouldResetDisplay || currentDisplay.textContent === 'Error') resetDisplay();
     currentDisplay.textContent += number;
 };
 
@@ -57,8 +60,22 @@ function evaluate() {
 
 
 function resetDisplay() {
-    currentDisplay.textContent = '';
+    if (currentDisplay.textContent.includes('-')){
+        currentDisplay.textContent = '-';
+    } else {
+        currentDisplay.textContent = '';
+    }
     shouldResetDisplay = false;
+};
+
+function setSign() {
+    if (positive) {
+        currentDisplay.textContent = '-' + currentDisplay.textContent;
+        positive = false;
+    } else {
+        currentDisplay.textContent = currentDisplay.textContent.toString().slice(1);
+        positive = true;
+    }
 }
 
 
@@ -68,6 +85,7 @@ function clearCalculator() {
     num1 = 0;
     num2 = 0;
     operator = null;
+    positive = true;
 };
 
 function deleteNumber() {

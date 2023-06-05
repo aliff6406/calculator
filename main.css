@@ -1,6 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
     font-size: 100%;
+    background-color: #E5E5E5;
 }
 
 
@@ -75,4 +76,16 @@ body {
 #equal-btn {
     background-color: #FF6531;
     color: #ffffff;
+}
+
+.btn:hover {
+    background-color: #242D35;
+}
+
+.right-column-btn:hover {
+    background-color: #C7C7C7;
+}
+
+#equal-btn:hover {
+    background-color: #CE5228;
 }

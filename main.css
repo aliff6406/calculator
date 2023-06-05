@@ -1,6 +1,8 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
+    font-size: 100%;
 }
+
 
 .main {
     display: grid;
@@ -9,42 +11,68 @@ body {
     height: 100vh;
 }
 
-.container {
-    display: flex;
-}
-
 #calculator {
-    outline: 1px solid black;
     width: 350px;
-    height: 500px;
-    padding: 20px;
-    flex-direction: column;
+    height: 600px;
+    border-radius: 25px;
+    background-color: #18212A;
+    color: #ffffff;
 }
 
 #display {
-    text-align: right;
-    flex: 1 0 auto;
-    display: flex;
     flex-direction: column;
+    justify-content: center;
+    height: 180px;
+    background-color: #36474F;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#display > * {
+    text-align: right;
+    padding: 0px 20px;
+    overflow: hidden;
 }
 
 #current-operation {
-    flex: 2 0 auto;
+    font-size: 3rem;
+    height: 105px;
+    line-height: 105px;
 }
 
 #last-operation {
-    flex: 1 0 auto;
+    font-size: 1.5rem;
+    height: 75px;
+    line-height: 75px;
 }
 
 #buttons-grid {
-    flex: 3 0 auto;
+    display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    height: 400px;
 }
 
 .btn-row {
-    flex: 1 0 auto;
+    display: flex;
+    flex: 0 0 60px;
+    justify-content: space-around;
 }
 
 .btn {
-    flex: 1 0 25%;
+    flex: 0 0 60px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50%;
+    background-color: #18212A;
+    color: #ffffff;
+}
+
+.right-column-btn {
+    background-color: #E5E5E5;
+    color: #000000;
+}
+
+#equal-btn {
+    background-color: #FF6531;
+    color: #ffffff;
 }

@@ -42,6 +42,7 @@ function setOperator(operation) {
     firstOperand = currentDisplay.textContent;
     operator = operation;
     previousDisplay.textContent = `${firstOperand} ${operator}`;
+    positive = true;
     shouldResetDisplay = true;
 };
 
@@ -60,10 +61,10 @@ function evaluate() {
 
 
 function resetDisplay() {
-    if (currentDisplay.textContent.includes('-')){
-        currentDisplay.textContent = '-';
-    } else {
+    if (positive){
         currentDisplay.textContent = '';
+    } else {
+        currentDisplay.textContent = '-';
     }
     shouldResetDisplay = false;
 };

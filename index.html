@@ -5,9 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Calculator</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./main.css">
     <script src="./script.js" defer></script>
 </head>
@@ -21,33 +19,33 @@
             <div id="buttons-grid" class="container">
                 <div class="btn-row container">
                     <button id="clear-btn" class="btn">AC</button>
-                    <button id="delete-btn" class="btn" >DEL</button>
+                    <button id="sign-btn" class="btn">&#177;</button>
                     <button id="modulo-btn" class="btn" data-operator="%">%</button>
-                    <button id="divide-btn" class="btn" data-operator="/">&divide;</button>
+                    <button id="divide-btn" class="btn right-column-btn" data-operator="/">&divide;</button>
                 </div>
                 <div class="btn-row container">
                     <button class="btn" data-number>7</button>
                     <button class="btn" data-number>8</button>
                     <button class="btn" data-number>9</button>
-                    <button id="multiply-btn" class="btn" data-operator="*">&times;</button>
+                    <button id="multiply-btn" class="btn right-column-btn" data-operator="*">&times;</button>
                 </div>
                 <div class="btn-row container">
                     <button class="btn" data-number>4</button>
                     <button class="btn" data-number>5</button>
                     <button class="btn" data-number>6</button>
-                    <button id="minus-btn" class="btn" data-operator="-">-</button>
+                    <button id="minus-btn" class="btn right-column-btn" data-operator="-">-</button>
                 </div>
                 <div class="btn-row container">
                     <button class="btn" data-number>1</button>
                     <button class="btn" data-number>2</button>
                     <button class="btn" data-number>3</button>
-                    <button id="plus-btn" class="btn" data-operator="+">+</button>
+                    <button id="plus-btn" class="btn right-column-btn" data-operator="+">+</button>
                 </div>
                 <div class="btn-row container">
                     <button id="period-btn" class="btn">.</button>
                     <button class="btn" data-number>0</button>
-                    <button id="sign-btn" class="btn">&#177;</button>
-                    <button id="equal-btn" class="btn">&equals;</button>
+                    <button id="delete-btn" class="btn" >DEL</button>
+                    <button id="equal-btn" class="btn right-column-btn">&equals;</button>
                 </div>
             </div>
         </div>

@@ -61,21 +61,21 @@ function evaluate() {
 
 
 function resetDisplay() {
-    if (positive){
-        currentDisplay.textContent = '';
-    } else {
+    if (currentDisplay.textContent.includes('-')){
         currentDisplay.textContent = '-';
+    } else {
+        currentDisplay.textContent = '';
     }
     shouldResetDisplay = false;
 };
 
 function setSign() {
-    if (positive) {
-        currentDisplay.textContent = '-' + currentDisplay.textContent;
-        positive = false;
-    } else {
+    if (currentDisplay.textContent.includes('-')) {
         currentDisplay.textContent = currentDisplay.textContent.toString().slice(1);
         positive = true;
+    } else {
+        currentDisplay.textContent = '-' + currentDisplay.textContent;
+        positive = false;
     }
 }
 
